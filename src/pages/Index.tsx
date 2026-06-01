@@ -25,11 +25,6 @@ const PRACTICES = [
   { icon: "Star", title: "Цифровая психология", desc: "Инструменты самопознания через тесты, трекеры настроения и персональные дневники.", slug: "digital" },
 ];
 
-const SPECIALISTS = [
-  { name: "Анна Светлова", role: "Психолог-консультант", spec: "Тревога, самооценка, отношения", img: "🌸" },
-  { name: "Михаил Орлов", role: "Гештальт-терапевт", spec: "Личностный рост, травма, границы", img: "🌿" },
-  { name: "Екатерина Нова", role: "Коуч и фасилитатор", spec: "Цели, ценности, жизненный смысл", img: "✨" },
-];
 
 const BLOG_POSTS = [
   { tag: "Практика", title: "Как начать слышать себя: 5 вопросов на каждый день", date: "28 мая 2026", slug: "hear-yourself" },
@@ -239,36 +234,15 @@ export default function Index() {
       {/* BOOKING */}
       <section id="booking" className="section-padding" style={{ background: "rgba(196,120,90,0.05)" }}>
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <p className="text-sm tracking-widest uppercase mb-4" style={{ color: "#8FA880" }}>Консультации</p>
-            <h2 className="section-title mb-4">Наши специалисты</h2>
-            <p className="text-base max-w-xl mx-auto" style={{ color: "#5A4535" }}>Профессиональные психологи и коучи, которые помогут найти свой путь</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {SPECIALISTS.map((s) => (
-              <div key={s.name} className="warm-card p-8 text-center"
-                style={{ transition: "transform 0.3s ease" }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}>
-                <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4" style={{ background: "linear-gradient(135deg, #F5EDD8, #E8D0C0)" }}>
-                  {s.img}
-                </div>
-                <h3 style={{ fontFamily: "Cormorant, serif", fontSize: "1.3rem", color: "#3A2D24" }} className="mb-1">{s.name}</h3>
-                <p className="text-sm mb-2" style={{ color: "#C4785A" }}>{s.role}</p>
-                <p className="text-xs" style={{ color: "#7A6555" }}>{s.spec}</p>
-              </div>
-            ))}
-          </div>
-
           <div className="max-w-lg mx-auto text-center">
+            <p className="text-sm tracking-widest uppercase mb-4" style={{ color: "#8FA880" }}>Консультации</p>
             <div className="warm-card p-10 md:p-14" style={{ boxShadow: "0 16px 48px rgba(196,120,90,0.1)" }}>
               <div className="text-5xl mb-5">💬</div>
               <h3 className="mb-3" style={{ fontFamily: "Cormorant, serif", fontSize: "2rem", color: "#3A2D24" }}>
-                Записаться в личку
+                Записаться на консультацию
               </h3>
               <p className="text-sm mb-8 leading-relaxed" style={{ color: "#8A7060" }}>
-                Напишите нам в Telegram — расскажите о своём запросе, и мы подберём подходящего специалиста
+                Напишите мне в Telegram — расскажите о своём запросе, и мы найдём подходящий формат работы
               </p>
               <a
                 href={TG_LINK}
@@ -280,7 +254,7 @@ export default function Index() {
                 <Icon name="Send" size={18} />
                 Написать в Telegram
               </a>
-              <p className="text-xs mt-5" style={{ color: "#B0A090" }}>Обычно отвечаем в течение нескольких часов</p>
+              <p className="text-xs mt-5" style={{ color: "#B0A090" }}>Обычно отвечаю в течение нескольких часов</p>
             </div>
           </div>
         </div>
