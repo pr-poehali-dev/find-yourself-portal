@@ -32,9 +32,9 @@ const SPECIALISTS = [
 ];
 
 const BLOG_POSTS = [
-  { tag: "Практика", title: "Как начать слышать себя: 5 вопросов на каждый день", date: "28 мая 2026" },
-  { tag: "Психология", title: "Почему мы избегаем близости и как с этим быть", date: "20 мая 2026" },
-  { tag: "Сообщество", title: "Истории участников: «Я впервые почувствовала, что меня понимают»", date: "14 мая 2026" },
+  { tag: "Практика", title: "Как начать слышать себя: 5 вопросов на каждый день", date: "28 мая 2026", slug: "hear-yourself" },
+  { tag: "Психология", title: "Почему мы избегаем близости и как с этим быть", date: "20 мая 2026", slug: "avoid-closeness" },
+  { tag: "Сообщество", title: "«Я впервые почувствовала, что меня понимают»", date: "14 мая 2026", slug: "community-story" },
 ];
 
 const SUPPORT_ITEMS = [
@@ -294,12 +294,13 @@ export default function Index() {
               <p className="text-sm tracking-widest uppercase mb-4" style={{ color: "#8FA880" }}>Блог</p>
               <h2 className="section-title">Статьи и истории</h2>
             </div>
-            <a href="#contacts" className="hidden md:block btn-outline-terra text-sm" style={{ textDecoration: "none" }}>Все статьи</a>
+            <Link to="/blog" className="hidden md:block btn-outline-terra text-sm" style={{ textDecoration: "none" }}>Все статьи</Link>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {BLOG_POSTS.map((post) => (
-              <article key={post.title} className="warm-card p-7 cursor-pointer"
-                style={{ transition: "transform 0.3s ease" }}
+              <Link key={post.slug} to={`/blog/${post.slug}`}
+                className="warm-card p-7 block"
+                style={{ textDecoration: "none", transition: "transform 0.3s ease" }}
                 onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-4px)")}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}>
                 <div className="inline-block text-xs px-3 py-1 rounded-full mb-4" style={{ background: "rgba(196,120,90,0.12)", color: "#C4785A" }}>
@@ -312,7 +313,7 @@ export default function Index() {
                   <span className="text-xs" style={{ color: "#9A8878" }}>{post.date}</span>
                   <Icon name="ArrowRight" size={16} style={{ color: "#C4785A" }} />
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
