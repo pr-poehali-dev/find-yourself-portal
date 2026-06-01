@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 type IconName = "Brain" | "Heart" | "Users" | "Compass" | "Leaf" | "Star" | "Shield" | "Sparkles" | "Globe" | "MessageCircle" | "BookOpen" | "Mail" | "MessageSquare" | "Instagram" | "Menu" | "X" | "ChevronDown" | "ArrowRight";
@@ -16,12 +17,12 @@ const NAV_ITEMS = [
 ];
 
 const PRACTICES = [
-  { icon: "Brain", title: "Рефлексия", desc: "Ежедневные практики осознанности и самонаблюдения для глубокого понимания своих реакций и паттернов." },
-  { icon: "Heart", title: "Эмоциональный интеллект", desc: "Работа с эмоциями через безопасные техники — учимся чувствовать, принимать и выражать себя." },
-  { icon: "Users", title: "Коммуникация", desc: "Осознанное общение, ненасильственный диалог, умение слышать и быть услышанным." },
-  { icon: "Compass", title: "Ценности и смысл", desc: "Поиск своего пути через прояснение личных ценностей и жизненных ориентиров." },
-  { icon: "Leaf", title: "Телесность", desc: "Связь с телом: дыхательные практики, медитации, работа с напряжением и ресурсом." },
-  { icon: "Star", title: "Цифровая психология", desc: "Инструменты самопознания через тесты, трекеры настроения и персональные дневники." },
+  { icon: "Brain", title: "Рефлексия", desc: "Ежедневные практики осознанности и самонаблюдения для глубокого понимания своих реакций и паттернов.", slug: "reflexia" },
+  { icon: "Heart", title: "Эмоциональный интеллект", desc: "Работа с эмоциями через безопасные техники — учимся чувствовать, принимать и выражать себя.", slug: "emotions" },
+  { icon: "Users", title: "Коммуникация", desc: "Осознанное общение, ненасильственный диалог, умение слышать и быть услышанным.", slug: "communication" },
+  { icon: "Compass", title: "Ценности и смысл", desc: "Поиск своего пути через прояснение личных ценностей и жизненных ориентиров.", slug: "values" },
+  { icon: "Leaf", title: "Телесность", desc: "Связь с телом: дыхательные практики, медитации, работа с напряжением и ресурсом.", slug: "body" },
+  { icon: "Star", title: "Цифровая психология", desc: "Инструменты самопознания через тесты, трекеры настроения и персональные дневники.", slug: "digital" },
 ];
 
 const SPECIALISTS = [
@@ -182,16 +183,20 @@ export default function Index() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRACTICES.map((p) => (
-              <div key={p.title} className="warm-card p-7 cursor-pointer"
-                style={{ transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
+              <Link key={p.title} to={`/practices/${p.slug}`}
+                className="warm-card p-7 block"
+                style={{ textDecoration: "none", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(196,120,90,0.15)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = ""; }}>
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style={{ background: "rgba(196,120,90,0.12)" }}>
                   <Icon name={p.icon as IconName} size={22} style={{ color: "#C4785A" }} />
                 </div>
                 <h3 className="mb-3" style={{ fontFamily: "Cormorant, serif", fontSize: "1.4rem", color: "#3A2D24" }}>{p.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#6A5545" }}>{p.desc}</p>
-              </div>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: "#6A5545" }}>{p.desc}</p>
+                <span className="text-xs font-medium flex items-center gap-1" style={{ color: "#C4785A" }}>
+                  Подробнее <Icon name="ArrowRight" size={13} />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
