@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 type IconName = "Brain" | "Heart" | "Users" | "Compass" | "Leaf" | "Star" | "Shield" | "Sparkles" | "Globe" | "MessageCircle" | "BookOpen" | "Mail" | "MessageSquare" | "Instagram" | "Menu" | "X" | "ChevronDown" | "ArrowRight";
 
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/3ec196c2-b21e-48f7-bb45-7260500b961b/files/ee81daac-327d-4fa4-8be6-093c2b0bf5a7.jpg";
+const TG_LINK = "https://t.me/find_yourself_in_yourse1f";
 
 const NAV_ITEMS = [
   { label: "О проекте", href: "#about" },
@@ -43,13 +44,6 @@ const SUPPORT_ITEMS = [
 
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", phone: "", specialist: "", message: "" });
-  const [formSent, setFormSent] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSent(true);
-  };
 
   return (
     <div className="min-h-screen" style={{ background: "#FBF7EE", color: "#3A2D24" }}>
@@ -70,7 +64,7 @@ export default function Index() {
           ))}
         </div>
 
-        <a href="#booking" className="hidden md:block btn-terra text-sm" style={{ textDecoration: "none" }}>
+        <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="hidden md:block btn-terra text-sm" style={{ textDecoration: "none" }}>
           Записаться на консультацию
         </a>
 
@@ -88,7 +82,7 @@ export default function Index() {
               {item.label}
             </a>
           ))}
-          <a href="#booking" onClick={() => setMenuOpen(false)} className="btn-terra mt-4" style={{ textDecoration: "none" }}>
+          <a href={TG_LINK} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="btn-terra mt-4" style={{ textDecoration: "none" }}>
             Записаться на консультацию
           </a>
         </div>
@@ -262,75 +256,26 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <div className="warm-card p-8 md:p-12" style={{ boxShadow: "0 16px 48px rgba(196,120,90,0.1)" }}>
-              <h3 className="text-center mb-2" style={{ fontFamily: "Cormorant, serif", fontSize: "2rem", color: "#3A2D24" }}>
-                Записаться на консультацию
+          <div className="max-w-lg mx-auto text-center">
+            <div className="warm-card p-10 md:p-14" style={{ boxShadow: "0 16px 48px rgba(196,120,90,0.1)" }}>
+              <div className="text-5xl mb-5">💬</div>
+              <h3 className="mb-3" style={{ fontFamily: "Cormorant, serif", fontSize: "2rem", color: "#3A2D24" }}>
+                Записаться в личку
               </h3>
-              <p className="text-center text-sm mb-8" style={{ color: "#8A7060" }}>Заполните форму — мы свяжемся в течение нескольких часов</p>
-
-              {formSent ? (
-                <div className="text-center py-8">
-                  <div className="text-5xl mb-4">🌸</div>
-                  <h4 style={{ fontFamily: "Cormorant, serif", fontSize: "1.5rem", color: "#3A2D24" }}>Заявка отправлена!</h4>
-                  <p className="mt-2 text-sm" style={{ color: "#8A7060" }}>Мы свяжемся с вами в ближайшее время</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm mb-1 block" style={{ color: "#6A5545" }}>Ваше имя *</label>
-                      <input type="text" required value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Как к вам обращаться?"
-                        className="w-full px-4 py-3 rounded-2xl outline-none text-sm"
-                        style={{ background: "rgba(251,247,238,0.8)", border: "1.5px solid rgba(196,120,90,0.2)", color: "#3A2D24", transition: "border-color 0.2s" }}
-                        onFocus={(e) => (e.currentTarget.style.borderColor = "#C4785A")}
-                        onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(196,120,90,0.2)")}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm mb-1 block" style={{ color: "#6A5545" }}>Телефон / Email *</label>
-                      <input type="text" required value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+7 (999) 000-00-00"
-                        className="w-full px-4 py-3 rounded-2xl outline-none text-sm"
-                        style={{ background: "rgba(251,247,238,0.8)", border: "1.5px solid rgba(196,120,90,0.2)", color: "#3A2D24", transition: "border-color 0.2s" }}
-                        onFocus={(e) => (e.currentTarget.style.borderColor = "#C4785A")}
-                        onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(196,120,90,0.2)")}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-sm mb-1 block" style={{ color: "#6A5545" }}>Специалист</label>
-                    <select value={formData.specialist}
-                      onChange={(e) => setFormData({ ...formData, specialist: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl outline-none text-sm"
-                      style={{ background: "rgba(251,247,238,0.8)", border: "1.5px solid rgba(196,120,90,0.2)", color: formData.specialist ? "#3A2D24" : "#9A8878" }}>
-                      <option value="">Не важно — подберите сами</option>
-                      {SPECIALISTS.map((s) => (
-                        <option key={s.name} value={s.name}>{s.name} — {s.role}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-sm mb-1 block" style={{ color: "#6A5545" }}>О чём хотите поговорить?</label>
-                    <textarea rows={3} value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Кратко опишите свой запрос..."
-                      className="w-full px-4 py-3 rounded-2xl outline-none text-sm resize-none"
-                      style={{ background: "rgba(251,247,238,0.8)", border: "1.5px solid rgba(196,120,90,0.2)", color: "#3A2D24", transition: "border-color 0.2s" }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = "#C4785A")}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(196,120,90,0.2)")}
-                    />
-                  </div>
-
-                  <button type="submit" className="btn-terra text-base mt-2 w-full">Отправить заявку</button>
-                  <p className="text-center text-xs" style={{ color: "#9A8878" }}>Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-                </form>
-              )}
+              <p className="text-sm mb-8 leading-relaxed" style={{ color: "#8A7060" }}>
+                Напишите нам в Telegram — расскажите о своём запросе, и мы подберём подходящего специалиста
+              </p>
+              <a
+                href={TG_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-terra text-base inline-flex items-center gap-2"
+                style={{ textDecoration: "none" }}
+              >
+                <Icon name="Send" size={18} />
+                Написать в Telegram
+              </a>
+              <p className="text-xs mt-5" style={{ color: "#B0A090" }}>Обычно отвечаем в течение нескольких часов</p>
             </div>
           </div>
         </div>
@@ -402,16 +347,15 @@ export default function Index() {
 
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             {[
-              { icon: "Mail", label: "hello@naiti-sebya.ru" },
-              { icon: "MessageSquare", label: "Telegram" },
-              { icon: "Instagram", label: "Instagram" },
+              { icon: "MessageSquare" as IconName, label: "Telegram", href: TG_LINK },
+              { icon: "Mail" as IconName, label: "hello@naiti-sebya.ru", href: "mailto:hello@naiti-sebya.ru" },
             ].map((c) => (
-              <a key={c.label} href="#"
+              <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 px-6 py-4 warm-card"
                 style={{ textDecoration: "none", color: "#4A3728", transition: "transform 0.3s ease" }}
                 onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}>
-                <Icon name={c.icon as IconName} size={18} style={{ color: "#C4785A" }} />
+                <Icon name={c.icon} size={18} style={{ color: "#C4785A" }} />
                 <span className="text-sm font-medium">{c.label}</span>
               </a>
             ))}
@@ -424,12 +368,12 @@ export default function Index() {
             <p className="mb-8 text-base" style={{ color: "rgba(251,247,238,0.85)" }}>
               Первая консультация — это просто разговор. Без обязательств.
             </p>
-            <a href="#booking"
+            <a href={TG_LINK} target="_blank" rel="noopener noreferrer"
               className="inline-block px-8 py-4 rounded-full font-medium text-base"
               style={{ background: "#FBF7EE", color: "#C4785A", textDecoration: "none", transition: "transform 0.3s ease" }}
               onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
               onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}>
-              Записаться на первую встречу
+              Написать в Telegram
             </a>
           </div>
         </div>
